@@ -1,5 +1,3 @@
-import { IMG_PATHS } from "../consts";
-
 export class CardClass {
     imagePath: string;
     cardId: string;
@@ -13,6 +11,22 @@ export class CardClass {
         return this.cardId;
     }
 }
+
+export const shuffle = (cards: Card[]) => {
+    let index = cards.length,
+        randomIndex: number = 0,
+        temp: Card | null = null;
+
+    while (index !== 0) {
+        randomIndex = Math.floor(Math.random() * index);
+        index--;
+        temp = cards[index];
+        cards[index] = cards[randomIndex];
+        cards[randomIndex] = temp;
+    }
+
+    return cards;
+};
 
 export const generateCards = (gameSize: number, imgs: string[]) => {
     const cards: Card[] = [];
